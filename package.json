@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+
+    "capture-frame": "ffmpeg -i rtsp://192.168.1.138:8554/mystream -vf \"fps=62.5\" -strftime 1 \"./public/most_recent.jpg\"",
+    "tailscalify": "sudo tailscale funnel 5173"
+
   },
   "dependencies": {
     "express": "^4.19.2",

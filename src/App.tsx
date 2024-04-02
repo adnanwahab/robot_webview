@@ -1,8 +1,9 @@
-import { useState } from 'react'
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Joystick } from 'react-joystick-component';
+import {useEffect, useState} from 'react'
 
 
 
@@ -33,11 +34,20 @@ function speak() {
 
   
 }
-
+console.log('wtf')
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [imageSrc, setImageSrc] = useState('/most_recent.jpg');
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Append a timestamp to the image source to force re-fetching
+      setImageSrc(`/most_recent.jpg?${new Date().getTime()}`);
+    }, 150); // Refresh every 5000 milliseconds (5 seconds)
+
+    return () => clearInterval(interval); // Cleanup the interval on component unmount
+  }, []);
 
   const handleMove = () => {
     console.log('move')
@@ -49,14 +59,13 @@ function App() {
 // <video src="https://adnan-dell-g16-7630.jerboa-kokanue.ts.net/vid.mp4" controls></video> 
   return (
     <>
-      <div>
+      <div className="device hidden">
         <h3 className="bg-purple-500">Swarmbotics.AI Teleoperations</h3>
       <Joystick size={100} sticky={false} baseColor="red" stickColor="blue" move={handleMove} stop={handleStop}></Joystick>
 
 
       </div>
-      <img src="most_recent.jpg"/>
-
+      <img src={imageSrc} alt="Most Recent"/>
       <p className="read-the-docs">
         Hi this is   
       </p>

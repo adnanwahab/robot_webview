@@ -1,4 +1,63 @@
+Swarmbotics Teleoperation GUI 
+
+
+
+
+
+ngrok http 5173
+sudo tailscale funnel 5173
+npm run dev
+ffmpeg -i rtsp://192.168.1.138:8554/mystream -vf "fps=62.5" -strftime 1 "./src/assets/most_recent.jpg"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # React + TypeScript + Vite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

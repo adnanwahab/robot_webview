@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.device {
+  position: relative;
+  top: 50px;
+  display: block;
+  width: 395px;
+  height: 813px;
+  margin-left: -20px;
+  font-family: "Helvetica Neue", sans-serif;
+  background-image: url(./device.png);
+  background-image: url(./assets/device.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 300%;
+  -webkit-transition: background-image .1s linear;
+  -moz-transition: background-image .1s linear;
+  transition: background-image .1s linear;
+  top: -70px;
+  position:fixed;
+  right: auto;
+}
