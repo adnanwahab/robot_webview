@@ -36,6 +36,15 @@ function speak() {
 }
 console.log('wtf')
 
+
+// turn left 90 deg
+// turn right 90 deg
+// walk forward 90 feet
+// walk backward 90 feet
+
+//way point mode
+//session replay
+
 function App() {
   const [count, setCount] = useState(0);
   const [imageSrc, setImageSrc] = useState('/most_recent.jpg');
@@ -60,15 +69,15 @@ function App() {
   return (
     <>
       <div className="device hidden">
+        <div className="device-content">
+          <div className="content-padded">
         <h3 className="bg-purple-500">Swarmbotics.AI Teleoperations</h3>
       <Joystick size={100} sticky={false} baseColor="red" stickColor="blue" move={handleMove} stop={handleStop}></Joystick>
-
-
-      </div>
+      
       <img src={imageSrc} alt="Most Recent"/>
-      <p className="read-the-docs">
-        Hi this is   
-      </p>
+      </div>
+      </div>
+      </div>
     </>
   )
 }

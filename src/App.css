@@ -62,3 +62,19 @@
   position:fixed;
   right: auto;
 }
+
+.device-content {
+    position: absolute;
+    top: 117px;
+    left: 37px;
+    width: 321px;
+    height: 569px;
+    overflow: hidden;
+    font-size: 17px;
+    line-height: 21px;
+    background-color: #fff;
+}
+
+.content-padded {
+  margin: 10px;
+}
