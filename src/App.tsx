@@ -4,9 +4,25 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Joystick } from 'react-joystick-component';
 
+
+
+const speech_1 = `
+Hello, and thank you for activating the Swarmbotics Unmanned ground Vehicle. You may call me Sheila.
+Would you like to start with a tutorial?
+`
+const speech_2 = `
+  okay. that sounds great
+`
+
+
+const content = [
+  speech_2,
+  speech_1
+]
+
 function speak() {
   // Create a SpeechSynthesisUtterance
-  const utterance = new SpeechSynthesisUtterance("Vehicle is online and ready to go. ");
+  const utterance = new SpeechSynthesisUtterance(content.pop() || 'thank you for driving. goodbye');
 
   // Select a voice
   const voices = speechSynthesis.getVoices();
@@ -14,6 +30,8 @@ function speak() {
 
   // Speak the text
   speechSynthesis.speak(utterance);
+
+  
 }
 
 
@@ -21,25 +39,53 @@ function App() {
   const [count, setCount] = useState(0)
 
 
-  const handleMove = () => {}
-  const handleStop = () => {
-    if (Math.random() > .5) speak()
+  const handleMove = () => {
+    console.log('move')
   }
-
+  const handleStop = () => {
+    console.log('speak')
+    speak()
+  }
+// <video src="https://adnan-dell-g16-7630.jerboa-kokanue.ts.net/vid.mp4" controls></video> 
   return (
     <>
       <div>
-      <Joystick size={100} sticky={true} baseColor="red" stickColor="blue" move={handleMove} stop={handleStop}></Joystick>
-<video src="http://localhost:3000/vid.mp4" controls></video>
+        <h3 className="bg-purple-500">Swarmbotics.AI Teleoperations</h3>
+      <Joystick size={100} sticky={false} baseColor="red" stickColor="blue" move={handleMove} stop={handleStop}></Joystick>
+
 
       </div>
+      <img src="most_recent.jpg"/>
+
       <p className="read-the-docs">
-        Hi this is swarmbotics 
+        Hi this is   
       </p>
     </>
   )
 }
 
+setTimeout(function() {
+  return;
+    const videoElement = document.querySelector('video');
+
+    // Check if the browser supports getUserMedia
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Request webcam access
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                // Set the source of the video element to the stream from the webcam
+                videoElement.srcObject = stream;
+
+                // Play the video
+                videoElement.play();
+            })
+            .catch(function(err) {
+                console.log("An error occurred: " + err);
+            });
+    } else {
+        alert('Sorry, your browser does not support getUserMedia');
+    }
+}, 5000);
 ///<video controls width="250"></video>
 
 export default App
