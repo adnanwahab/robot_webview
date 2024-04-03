@@ -91,7 +91,7 @@ function App() {
     <div className="device">
 
         <div className={("device-content bg-gray-500")}>
-        <header class="bar bar-nav">
+        <header className="bar bar-nav">
   {/* <button class="btn btn-link btn-nav pull-left">
     <span class="icon icon-left-nav"></span>
     Left
@@ -100,7 +100,7 @@ function App() {
     Right
     <span class="icon icon-right-nav"></span>
   </button> */}
-  <h1 class="title">Swarmbotics.AI Teleoperations</h1>
+  <h1 className="title">Swarmbotics.AI Teleoperations</h1>
 </header>
           <div className={("content-padded" )}>
         {/* <>{window.innerWidth}, {window.innerHeight}</> */}
