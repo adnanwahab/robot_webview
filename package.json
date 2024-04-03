@@ -5,13 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": " cross-env ESLINT_DISABLED=true tsc && vite build && surge dist swarmbotics.surge.sh",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-
     "capture-frame": "ffmpeg -i rtsp://192.168.1.138:8554/mystream -vf \"fps=62.5\" -strftime 1 \"./public/most_recent.jpg\"",
     "tailscalify": "sudo tailscale funnel 5173"
-
   },
   "dependencies": {
     "express": "^4.19.2",
@@ -25,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
