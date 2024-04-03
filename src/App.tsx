@@ -48,16 +48,21 @@ console.log('wtf')
 //session replay
 
 
-function do_things (x:number, y:number) {
+async function do_things (x:number, y:number, backend_url: string) {
   
-  let url = `https://5ac8-72-195-220-81.ngrok-free.app/drive`
+  let url = backend_url || `https://5ac8-72-195-220-81.ngrok-free.app/drive`
 
-  fetch(url, {
+  let omg = await fetch(url, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
     method: 'POST',
     body: JSON.stringify({
       x, y
     })
   })
+  let shit = await omg.json()
+  console.log(shit)
 }
 
 // let one = `relative h-full w-full rounded-xl bg-white shadow-[0px_0px_0px_1px_rgba(9,9,11,0.07),0px_2px_2px_0px_rgba(9,9,11,0.05)] dark:bg-zinc-900 dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.1)] dark:before:pointer-events-none dark:before:absolute dark:before:-inset-px dark:before:rounded-xl dark:before:shadow-[0px_2px_8px_0px_rgba(0,_0,_0,_0.20),_0px_1px_0px_0px_rgba(255,_255,_255,_0.06)_inset] forced-colors:outline`
@@ -104,13 +109,15 @@ function App() {
     //console.log('move', shit)
     setPrevEvent(shit)
     if (isAccel) {
-      do_things(shit.x, shit.y)
+      do_things(shit.x, shit.y, backendUrl)
     }
   }
   const handleStop = () => {
     //do_things()
     //speak()
   }
+
+  let [backendUrl, setBackendUrl] = useState('')
 // <video src="https://adnan-dell-g16-7630.jerboa-kokanue.ts.net/vid.mp4" controls></video> 
   return (
     <>
@@ -143,6 +150,7 @@ function App() {
             
           </div>
           <div className={'mt-6'} >
+            <button onClick={() => setBackendUrl(prompt('what server would you want - ex https://5ac8-72-195-220-81.ngrok-free.app/drive') || '')}>change server Backend </button>
             <button className={four} onClick={() => setIsAccel(! isAccel)}>Accel</button>
             <button className={four}>Brake</button>
           </div>
