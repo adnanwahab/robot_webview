@@ -20,7 +20,7 @@
 
 
 export default Parking
-function Parking(props ) {
+function Parking(props:any) {
     return (
 <div className="bg-gray-500 flex items-center justify-center px-5 py-5 pt-96 parking-container" style={{
     display: props.clicked ? 'block' : 'hidden'
