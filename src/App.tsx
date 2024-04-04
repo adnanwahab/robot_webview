@@ -1,4 +1,3 @@
-
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import './App.css'
@@ -50,13 +49,15 @@ console.log('wtf')
 
 async function do_things (x:number, y:number, backend_url: string) {
   
-  let url = backend_url || `https://5ac8-72-195-220-81.ngrok-free.app/drive`
-
+  let url = backend_url || `https://3ab8-72-195-220-81.ngrok-free.app/drive`
+  //url = `https://8a70-72-195-220-81.ngrok-free.app/drive`
+  //url = `https://192.168.1.221:8000/brake`
   let req = await fetch(url, {
     headers: {
       'Content-Type': 'application/json'
     },
     method: 'POST',
+    //    mode: 'no-cors',
     body: JSON.stringify({
       x, y
     })
@@ -100,7 +101,8 @@ focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 foc
 
 
 
-
+w-16
+ml-16
 relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)] sm:text-sm/6 focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500 data-[disabled]:opacity-50 [&>[data-slot=icon]]:-mx-0.5 [&>[data-slot=icon]]:my-0.5 [&>[data-slot=icon]]:size-5 [&>[data-slot=icon]]:shrink-0 [&>[data-slot=icon]]:text-[--btn-icon] [&>[data-slot=icon]]:sm:my-1 [&>[data-slot=icon]]:sm:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-[hover]:[--btn-icon:ButtonText] border-transparent bg-[--btn-border] dark:bg-[--btn-bg] before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme(borderRadius.lg)-1px)] before:bg-[--btn-bg] before:shadow dark:before:hidden dark:border-white/5 after:absolute after:inset-0 after:-z-10 after:rounded-[calc(theme(borderRadius.lg)-1px)] after:shadow-[shadow:inset_0_1px_theme(colors.white/15%)] after:data-[active]:bg-[--btn-hover-overlay] after:data-[hover]:bg-[--btn-hover-overlay] dark:after:-inset-px dark:after:rounded-lg before:data-[disabled]:shadow-none after:data-[disabled]:shadow-none text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)] dark:text-white dark:[--btn-bg:theme(colors.zinc.600)] dark:[--btn-hover-overlay:theme(colors.white/5%)] [--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)] cursor-default`
 
 function App() {
@@ -109,6 +111,8 @@ function App() {
 
   const [imageSrc, setImageSrc] = useState('/most_recent.jpg');
   const [prevEvent, setPrevEvent] = useState({x: 0, y: 0})
+  //let [backendUrl, setBackendUrl] = useState('')
+  let backendUrl = ''
 
 
 
@@ -139,7 +143,6 @@ function App() {
     send_brake_message()
   }
 
-  let [backendUrl, setBackendUrl] = useState('')
 // <video src="https://adnan-dell-g16-7630.jerboa-kokanue.ts.net/vid.mp4" controls></video> 
   return (
     <>
@@ -150,14 +153,14 @@ function App() {
  
           <div className={("content-padded" )}>
           <header className="bar bar-nav w-96">
-  {/* <button class="btn btn-link btn-nav pull-left">
-    <span class="icon icon-left-nav"></span>
+   <button className="btn btn-link btn-nav pull-left hidden ">
+    <span className="icon icon-left-nav"></span>
     Left
-  </button> */}
-  {/* <button class="btn btn-link btn-nav pull-right">
+  </button> 
+  <button className="btn btn-link btn-nav pull-right hidden">
     Right
-    <span class="icon icon-right-nav"></span>
-  </button> */}
+    <span className="icon icon-right-nav"></span>
+  </button> 
   <h1 className="title">Swarmbotics.AI Teleoperations</h1>
 </header>
         <div className="flex justify-between flex-col">
@@ -169,12 +172,16 @@ function App() {
             <div>x = {getX(prevEvent)}</div>
             <div>y = {getY(prevEvent)}</div>
             <div>isAccel = {isAccel ? 'on': 'off'} </div>
+            <div>
+            {backendUrl ? backendUrl : ''}
+
+            </div>
             
           </div>
           <img src={imageSrc} alt="Most Recent" className="pt-48 rotate-90 ml-24" />
 
-          <div className={'mt-6 rotate-90'} >
-            <button className={four + ' hidden'} onClick={() => setBackendUrl(prompt('what server would you want - example https://5ac8-72-195-220-81.ngrok-free.app/drive') || '')}>change server Backend </button>
+          <div className={'mt-6 rotate-90 flex flex-col'} >
+
             <button className={four} onClick={() => setIsAccel(! isAccel)}>Accel</button>
             <button className={four} onClick={handleBrake}>Brake</button>
           </div>
@@ -196,7 +203,7 @@ function App() {
 
 export default App
 
-
+// <button className={four} onClick={() => setBackendUrl(prompt('what server would you want - example https://5ac8-72-195-220-81.ngrok-free.app/drive') || '')}>server</button>
 //ffmpeg -i rtsp://your_rtsp_stream_url -c copy -t 10 test.mp4
 
 
