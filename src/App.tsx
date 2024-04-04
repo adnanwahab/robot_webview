@@ -62,6 +62,7 @@ async function do_things (x:number, y:number, backend_url: string) {
     })
   })
   let response = await req.json()
+  console.log(response)
 }
 
 
@@ -79,6 +80,7 @@ async function send_brake_message () {
     })
   })
   let response = await req.json()
+  console.log(response)
 }
 
 // let one = `relative h-full w-full rounded-xl bg-white shadow-[0px_0px_0px_1px_rgba(9,9,11,0.07),0px_2px_2px_0px_rgba(9,9,11,0.05)] dark:bg-zinc-900 dark:shadow-[0px_0px_0px_1px_rgba(255,255,255,0.1)] dark:before:pointer-events-none dark:before:absolute dark:before:-inset-px dark:before:rounded-xl dark:before:shadow-[0px_2px_8px_0px_rgba(0,_0,_0,_0.20),_0px_1px_0px_0px_rgba(255,_255,_255,_0.06)_inset] forced-colors:outline`
@@ -106,7 +108,7 @@ function App() {
   const [isAccel, setIsAccel] = useState(false);
 
   const [imageSrc, setImageSrc] = useState('/most_recent.jpg');
-  const [prevEvent, setPrevEvent] = useState({})
+  const [prevEvent, setPrevEvent] = useState({x: 0, y: 0})
 
 
 
@@ -145,7 +147,9 @@ function App() {
     <div className="device">
 
         <div className={("device-content bg-gray-500")}>
-        <header className="bar bar-nav">
+ 
+          <div className={("content-padded" )}>
+          <header className="bar bar-nav w-96">
   {/* <button class="btn btn-link btn-nav pull-left">
     <span class="icon icon-left-nav"></span>
     Left
@@ -156,21 +160,21 @@ function App() {
   </button> */}
   <h1 className="title">Swarmbotics.AI Teleoperations</h1>
 </header>
-          <div className={("content-padded" )}>
-        {/* <>{window.innerWidth}, {window.innerHeight}</> */}
-
-
-        <div className="flex justify-between">
+        <div className="flex justify-between flex-col">
+          <span className="pl-28">
           <Joystick size={100} sticky={false} baseColor="gray" stickColor="#333" move={handleMove} stop={handleStop}></Joystick>
-          <div>
+          </span>
+          <div className="rotate-90 ml-48 translate-y-44">
             
-            
-            x = <span >{getX(prevEvent)}</span>, y = <span >{getY(prevEvent)}</span>
-            isAccel = <span>{isAccel ? 'on': 'off'} </span>
+            <div>x = {getX(prevEvent)}</div>
+            <div>y = {getY(prevEvent)}</div>
+            <div>isAccel = {isAccel ? 'on': 'off'} </div>
             
           </div>
-          <div className={'mt-6'} >
-            <button onClick={() => setBackendUrl(prompt('what server would you want - ex https://5ac8-72-195-220-81.ngrok-free.app/drive') || '')}>change server Backend </button>
+          <img src={imageSrc} alt="Most Recent" className="pt-48 rotate-90 ml-24" />
+
+          <div className={'mt-6 rotate-90'} >
+            <button className={four + ' hidden'} onClick={() => setBackendUrl(prompt('what server would you want - example https://5ac8-72-195-220-81.ngrok-free.app/drive') || '')}>change server Backend </button>
             <button className={four} onClick={() => setIsAccel(! isAccel)}>Accel</button>
             <button className={four} onClick={handleBrake}>Brake</button>
           </div>
@@ -180,7 +184,6 @@ function App() {
           width="100px" height="100px"
         src="https://raw.githubusercontent.com/MarcoFazioRandom/Virtual-Joystick-Godot/Main/addons/virtual_joystick/previews/icon.png" 
         /> */}
-        <img src={imageSrc} alt="Most Recent" className="pt-48"/>
       </div>
       </div>
       {(count > 2) && (<Parking />) }
