@@ -1,3 +1,7 @@
+canvas {
+border: 1px solid green;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -406,8 +410,6 @@ style attribute {
     position:fixed;
     right: auto;
   }
-  
-
 }
 
 
@@ -416,8 +418,9 @@ style attribute {
     position: absolute;
     top: 30px;
     left: 37px;
-    width: 321px;
-    height: 569px;
+    width: 400px;
+    /* height: 569px; */
+    height: 500px;
     overflow: hidden;
     font-size: 17px;
     line-height: 21px;
